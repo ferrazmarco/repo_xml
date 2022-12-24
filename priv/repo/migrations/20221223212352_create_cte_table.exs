@@ -21,13 +21,14 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       add :recipient_cnpj, :string
       add :borrower_name, :string
       add :borrower_cnpj, :string
-      add :specie, :string
       add :merchandise_value, :string
       add :weight, :decimal, precision: 10, scale: 2
       add :quantity, :string
       add :service_value, :decimal, precision: 10, scale: 2
       add :type_service, :string
       add :type, :string
+      add :start_service, :string
+      add :end_service, :string
       add :authorized, :boolean
 
       timestamps()

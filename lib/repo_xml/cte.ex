@@ -22,13 +22,14 @@ defmodule RepoXml.Cte do
     field :recipient_cnpj, :string
     field :borrower_name, :string
     field :borrower_cnpj, :string
-    field :specie, :string
     field :merchandise_value, :string
     field :weight, :decimal
     field :quantity, :string
     field :service_value, :decimal
     field :type_service, :string
     field :type, :string
+    field :start_service, :string
+    field :end_service, :string
     field :authorized, :boolean, default: true
 
     timestamps()
