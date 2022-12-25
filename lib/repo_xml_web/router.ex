@@ -7,6 +7,8 @@ defmodule RepoXmlWeb.Router do
 
   scope "/api", RepoXmlWeb do
     pipe_through :api
+
+    post "/import_xml", ImportsController, :import_xml
   end
 
   # Enables LiveDashboard only for development

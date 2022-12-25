@@ -1,12 +1,18 @@
 defmodule RepoXml.Cte.Create do
   alias RepoXml.{Cte, Repo}
+  alias RepoXml.Cte.Parse
 
   def call(params) do
     params
     |> Cte.build()
-    |> create_cte()
+    |> Repo.insert()
+    |> populate_fields()
   end
 
-  defp create_cte({:ok, struct}), do: Repo.insert(struct)
-  defp create_cte({:error, _changeset} = error), do: error
+  defp populate_fields({:ok, struct}) do
+    struct
+    |> Parse.call()
+  end
+
+  defp populate_fields({:error, _changeset} = error), do: error
 end

@@ -5,7 +5,7 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
     create table(:ctes, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :xml_b64, :text
-      add :key, :string
+      add :key, :string, size: 44
       add :number, :string
       add :emission_date, :naive_datetime
       add :modal, :string
@@ -34,6 +34,6 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       timestamps()
     end
 
-    create unique_index(:ctes, [:key])
+    create index(:ctes, [:key], unique: true)
   end
 end
