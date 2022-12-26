@@ -35,7 +35,6 @@ defmodule RepoXml.Cte do
     timestamps()
   end
 
-  # 35221210140658000403570010002116271100031673
   @required_params [:key, :xml_b64]
   def build(params) do
     params

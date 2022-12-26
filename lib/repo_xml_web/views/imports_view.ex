@@ -3,7 +3,7 @@ defmodule RepoXmlWeb.ImportsView do
 
   alias RepoXml.Cte
 
-  def render("200.json", %{struct: %Cte{id: id, key: key}}) do
+  def render("200.json", %{result: %Cte{id: id, key: key}}) do
     %{
       message: "CTe importado com sucesso!",
       cte: %{
@@ -13,7 +13,7 @@ defmodule RepoXmlWeb.ImportsView do
     }
   end
 
-  # def render("create.json", %{struct: %Nfe{id: id, key: key}}) do
+  # def render("create.json", %{result: %Nfe{id: id, key: key}}) do
   #   %{
   #     message: "NFe importada com sucesso!",
   #     nfe: %{
