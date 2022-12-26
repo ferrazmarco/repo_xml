@@ -6,13 +6,18 @@ defmodule RepoXmlWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("error.json", %{result: result}) do
+  def render("error.json", %{result: %Ecto.Changeset{} = result}) do
     %{
       message: translate_errors(result)
     }
   end
 
-  ## TODO: fazer um patter matching pra quando o retorno for {:error, %Ecto.Changeset{}}
+  def render("error.json", %{result: result}) do
+    %{
+      message: result
+    }
+  end
+
   defp translate_errors(changeset) do
     traverse_errors(changeset, fn {msg, opts} ->
       Regex.replace(~r"%{(\w+)}", msg, fn _, key ->
