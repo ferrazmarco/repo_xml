@@ -3,6 +3,6 @@ defmodule RepoXml.Cte.Parse do
 
   def call(struct) do
     Base.decode64(struct.xml_b64)
-    |> xpath(~x"//infCte/@Id")
+    |> xmap(key: ~x"//infCte/@Id")
   end
 end
