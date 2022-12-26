@@ -5,14 +5,13 @@ defmodule RepoXmlWeb.ImportsView do
 
   def render("200.json", %{struct: %Cte{id: id, key: key}}) do
     %{
-      message: "XML importado com sucesso!",
-      xml: %{
+      message: "CTe importado com sucesso!",
+      cte: %{
         id: id,
         key: key
       }
     }
   end
-
 
   # def render("create.json", %{struct: %Nfe{id: id, key: key}}) do
   #   %{

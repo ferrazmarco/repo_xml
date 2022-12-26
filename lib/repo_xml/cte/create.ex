@@ -6,7 +6,7 @@ defmodule RepoXml.Cte.Create do
     params
     |> Cte.build()
     |> Repo.insert()
-    |> populate_fields()
+    # |> populate_fields()
   end
 
   defp populate_fields({:ok, struct}) do

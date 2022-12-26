@@ -8,7 +8,7 @@ defmodule RepoXmlWeb.ErrorView do
 
   def render("error.json", %{result: result}) do
     %{
-      message: result
+      message: translate_errors(result)
     }
   end
 
