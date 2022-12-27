@@ -8,7 +8,7 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       add :key, :string, size: 44
       add :number, :string
       add :emission_date, :naive_datetime
-      add :modal, :string
+      add :modal, :integer
       add :issuer_name, :string
       add :issuer_cnpj, :string
       add :sender_name, :string
@@ -25,8 +25,8 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       add :weight, :decimal, precision: 10, scale: 2
       add :quantity, :string
       add :service_value, :decimal, precision: 10, scale: 2
-      add :type_service, :string
-      add :type, :string
+      add :type_service, :integer
+      add :type, :integer
       add :start_service, :string
       add :end_service, :string
       add :authorized, :boolean

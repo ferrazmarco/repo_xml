@@ -11,7 +11,9 @@ defmodule RepoXml.IdentifyXml do
     case base_64 |> Base.decode64(ignore: :whitespace) do
       {:ok, result} ->
         result |> xpath(~x"//infCte/@Id"s) |> identify_cte(base_64)
-      _ -> {:error,  @error_message}
+
+      _ ->
+        {:error, @error_message}
     end
   end
 
@@ -19,7 +21,9 @@ defmodule RepoXml.IdentifyXml do
     case base_64 |> Base.decode64(ignore: :whitespace) do
       {:ok, result} ->
         result |> xpath(~x"//infNFe/@Id"s) |> identify_nfe(base_64)
-      _ -> {:error,  @error_message}
+
+      _ ->
+        {:error, @error_message}
     end
   end
 
@@ -38,5 +42,5 @@ defmodule RepoXml.IdentifyXml do
     {:ok, "Caso da NFe!"}
   end
 
-  defp identify_nfe(_result, _base_64), do: {:error,  @error_message}
+  defp identify_nfe(_result, _base_64), do: {:error, @error_message}
 end

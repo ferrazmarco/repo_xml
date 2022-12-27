@@ -2,6 +2,9 @@ defmodule RepoXmlWeb.ImportsController do
   use RepoXmlWeb, :controller
   action_fallback RepoXmlWeb.FallbackController
 
+  def init(_conn, _params) do
+  end
+
   def import_xml(conn, params) do
     params["data"]
     |> RepoXml.identify_xml()

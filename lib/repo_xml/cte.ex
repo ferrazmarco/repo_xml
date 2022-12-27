@@ -4,12 +4,38 @@ defmodule RepoXml.Cte do
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}
 
+  @fields [
+    :xml_b64,
+    :key,
+    :number,
+    :emission_date,
+    :modal,
+    :issuer_name,
+    :issuer_cnpj,
+    :sender_name,
+    :sender_cnpj,
+    :receiver_name,
+    :receiver_cnpj,
+    :dispatcher_name,
+    :dispatcher_cnpj,
+    :recipient_name,
+    :recipient_cnpj,
+    :borrower_name,
+    :borrower_cnpj,
+    :merchandise_value,
+    :weight,
+    :quantity,
+    :service_value,
+    :type_service,
+    :type,
+    :authorized
+  ]
+
   schema "ctes" do
     field :xml_b64, :string
     field :key, :string
     field :number, :string
     field :emission_date, :naive_datetime
-    field :modal, :string
     field :issuer_name, :string
     field :issuer_cnpj, :string
     field :sender_name, :string
@@ -26,25 +52,24 @@ defmodule RepoXml.Cte do
     field :weight, :decimal
     field :quantity, :string
     field :service_value, :decimal
-    field :type_service, :string
-    field :type, :string
-    field :start_service, :string
-    field :end_service, :string
+    field :modal, Ecto.Enum, values: [road: 1, air: 2, sea: 3, rail: 4, ducts: 5, multi: 6]
     field :authorized, :boolean, default: true
+
+    field :type_service, Ecto.Enum,
+      values: [normal: 0, complemento: 1, anulacao: 2, substituto: 3]
+
+    field :type, Ecto.Enum,
+      values: [normal: 0, subcontratacao: 1, redespacho: 2, redespacho_int: 3, multi: 4]
 
     timestamps()
   end
 
-  @required_params [:key, :xml_b64]
-  def build(params) do
-    params
-    |> changeset()
-    # |> apply_action(:insert)
-  end
+  def changeset(params), do: create_changeset(%__MODULE__{}, params)
+  def changeset(cte, params), do: create_changeset(cte, params)
 
-  def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, @required_params)
+  defp create_changeset(cte, params) do
+    cte
+    |> cast(params, @fields)
     |> validate_required([:key, :xml_b64])
     |> validate_length(:key, is: 44)
     |> unique_constraint(:key, name: :ctes_key_index)
