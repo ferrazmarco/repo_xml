@@ -1,4 +1,6 @@
 defmodule RepoXml.Cte.QueryBuilder do
+  @moduledoc false
+
   alias RepoXml.{Cte, Repo}
   import Ecto.Query
 

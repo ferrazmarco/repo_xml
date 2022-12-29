@@ -44,7 +44,8 @@ defmodule RepoXml.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:sweet_xml, "~> 0.7.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 

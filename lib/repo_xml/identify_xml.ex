@@ -1,4 +1,6 @@
 defmodule RepoXml.IdentifyXml do
+  @moduledoc false
+
   import SweetXml
   @error_message "Arquivo não corresponde a um CTe ou NFe!"
 

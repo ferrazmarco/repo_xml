@@ -1,5 +1,6 @@
 defmodule RepoXml.Cte.Cancel do
   alias RepoXml.{Cte, Repo}
+  @moduledoc false
 
   def call(%{canceled_key: key}) do
     case Repo.get_by(Cte, key: key) do

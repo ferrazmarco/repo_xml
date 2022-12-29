@@ -1,4 +1,5 @@
 defmodule RepoXml.Cte.Show do
+  @moduledoc false
   alias RepoXml.{Cte, Repo}
   alias Ecto.UUID
 

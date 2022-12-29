@@ -1,4 +1,5 @@
 defmodule RepoXml.Cte.Parse do
+  @moduledoc false
   import SweetXml
 
   def call(%{xml_b64: xml_b64} = params) do

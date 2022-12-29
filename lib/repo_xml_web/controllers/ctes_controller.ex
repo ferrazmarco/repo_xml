@@ -2,6 +2,7 @@ defmodule RepoXmlWeb.CtesController do
   use RepoXmlWeb, :controller
   action_fallback RepoXmlWeb.FallbackController
 
+  # refatorar pra mandar o status 404 quando nao encontrar a ocorrencia certa
   def index(conn, params) do
     params
     |> RepoXml.query_builder()
@@ -25,5 +26,5 @@ defmodule RepoXmlWeb.CtesController do
     |> render(view, cte: cte)
   end
 
-  defp handle_response({:error, _} = error, _conn,_view, _status), do: error
+  defp handle_response({:error, _} = error, _conn, _view, _status), do: error
 end
