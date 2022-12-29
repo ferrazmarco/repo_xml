@@ -10,7 +10,18 @@ defmodule RepoXml.Cte.QueryBuilder do
   end
 
   defp base_query do
-    from cte in Cte
+    from cte in Cte,
+      select: [
+        :id,
+        :key,
+        :issuer_cnpj,
+        :issuer_name,
+        :number,
+        :weight,
+        :authorized,
+        :merchandise_value
+      ],
+      order_by: [desc: :emission_date]
   end
 
   defp build_query(query, criteria) do
@@ -22,7 +33,7 @@ defmodule RepoXml.Cte.QueryBuilder do
   end
 
   defp compose_query({"number", number}, query) do
-    where(query, [cte], cte.number == ^"%#{number}%")
+    where(query, [cte], cte.number == ^"#{number}")
   end
 
   defp compose_query({"issuer_cnpj", issuer_cnpj}, query) do
