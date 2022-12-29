@@ -19,8 +19,8 @@ defmodule RepoXml.Cte.Update do
   defp fetch_cte(uuid), do: Repo.get(Cte, uuid)
 
   defp update_cte(cte, params) do
-    cte
-    |> Cte.changeset(params)
+    params
+    |> Cte.changeset(cte)
     |> Repo.update()
   end
 end

@@ -56,7 +56,7 @@ defmodule RepoXml.Cte do
     field :authorized, :boolean, default: true
 
     field :type_service, Ecto.Enum,
-      values: [normal: 0, complemento: 1, anulacao: 2, substituto: 3]
+      values: [normal: 0, complemento: 1, anulacao: 2, substituto: 3, outros: 4]
 
     field :type, Ecto.Enum,
       values: [normal: 0, subcontratacao: 1, redespacho: 2, redespacho_int: 3, multi: 4]

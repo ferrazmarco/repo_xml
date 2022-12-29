@@ -3,16 +3,17 @@ defmodule RepoXmlWeb.ImportsView do
 
   alias RepoXml.Cte
 
-  def render("200.json", %{result: %Cte{id: id, key: key, weight: weight, merchandise_value: merchandise_value, issuer_cnpj: issuer_cnpj, issuer_name: issuer_name}}) do
+  def render("200.json", %{result: %Cte{} = cte}) do
     %{
       message: "CTe importado com sucesso!",
       cte: %{
-        id: id,
-        key: key,
-        weight: weight,
-        merchandise_value: merchandise_value,
-        issuer_cnpj: issuer_cnpj,
-        issuer_name: issuer_name
+        id: cte.id,
+        key: cte.key,
+        weight: cte.weight,
+        merchandise_value: cte.merchandise_value,
+        issuer_cnpj: cte.issuer_cnpj,
+        issuer_name: cte.issuer_name,
+        authorized: cte.authorized
       }
     }
   end

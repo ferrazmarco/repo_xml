@@ -10,7 +10,9 @@ defmodule RepoXml.IdentifyXml do
   defp decode(base_64, :cte) do
     case base_64 |> Base.decode64(ignore: :whitespace) do
       {:ok, result} ->
-        result |> xpath(~x"//infCte/@Id"s) |> identify_cte(base_64)
+        result |>
+          xmap(key: ~x"//infCte/@Id"s, cstat: ~x"//cStat/text()"s, canc_key: ~x"//eventoCTe/infEvento/chCTe/text()"s)
+          |> identify_cte(base_64)
 
       _ ->
         {:error, @error_message}
@@ -27,10 +29,14 @@ defmodule RepoXml.IdentifyXml do
     end
   end
 
-  defp identify_cte(result, base_64) when result !== "" do
-    key = result |> String.replace(~r/[^\d]/, "")
+  defp identify_cte(%{key: key, cstat: cstat}, base_64) when cstat === "100" and key !== "" do
+    key = key |> String.replace(~r/[^\d]/, "")
 
     RepoXml.create_cte(%{key: key, xml_b64: base_64})
+  end
+
+  defp identify_cte(%{canc_key: key, cstat: cstat}, _base_64) when cstat === "135" and key !== "" do
+    RepoXml.cancel_cte(%{canceled_key: key})
   end
 
   defp identify_cte(_result, base_64) do
