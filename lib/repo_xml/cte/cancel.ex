@@ -5,7 +5,7 @@ defmodule RepoXml.Cte.Cancel do
   def call(%{canceled_key: key}) do
     case Repo.get_by(Cte, key: key) do
       nil ->
-        {:error, "CTe not found"}
+        {:error, %{message: "CTe not found", status: :not_found}}
 
       cte ->
         cte

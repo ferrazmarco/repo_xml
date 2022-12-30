@@ -50,6 +50,6 @@ defmodule RepoXml.Cte.QueryBuilder do
     query
   end
 
-  defp handle_query([]), do: {:error, "Not Found"}
+  defp handle_query([]), do: {:error, %{message: "Not Found", status: :not_found}}
   defp handle_query(result), do: {:ok, result}
 end

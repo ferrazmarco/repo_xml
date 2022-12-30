@@ -18,9 +18,11 @@ defmodule RepoXmlWeb.CtesView do
 
   def render("index.json", %{cte: ctes}) do
     %{
+      total_count: length(ctes),
       data:
         Enum.map(ctes, fn cte ->
           %{
+            id: cte.id,
             key: cte.key,
             number: cte.number,
             weight: cte.weight,

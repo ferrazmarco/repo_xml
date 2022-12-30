@@ -5,14 +5,14 @@ defmodule RepoXml.Cte.Show do
 
   def call(uuid) do
     case UUID.cast(uuid) do
-      :error -> {:error, "Invalid ID format"}
+      :error -> {:error, %{message: "Invalid ID format", status: :bad_request}}
       {:ok, _uuid} -> get(uuid)
     end
   end
 
   defp get(uuid) do
     case Repo.get(Cte, uuid) do
-      nil -> {:error, "CTe not found!"}
+      nil -> {:error, %{message: "CTe not found!", status: :not_found}}
       cte -> {:ok, cte}
     end
   end

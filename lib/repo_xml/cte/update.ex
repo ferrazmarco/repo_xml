@@ -5,14 +5,14 @@ defmodule RepoXml.Cte.Update do
 
   def call(%{"id" => uuid} = params) do
     case UUID.cast(uuid) do
-      :error -> {:error, "Invalid ID format"}
+      :error -> {:error, %{message: "Invalid ID format", status: :bad_request}}
       {:ok, _uuid} -> update(params)
     end
   end
 
   defp update(%{"id" => uuid} = params) do
     case Repo.get(Cte, uuid) do
-      nil -> {:error, "CTe not found!"}
+      nil -> {:error, %{message: "CTe not found!", status: :not_found}}
       cte -> update_cte(cte, params)
     end
   end

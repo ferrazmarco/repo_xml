@@ -13,7 +13,7 @@ defmodule RepoXmlWeb.ImportsController do
 
   defp handle_response({:ok, result}, conn) do
     conn
-    |> put_status(:ok)
+    |> put_status(:created)
     |> render("200.json", result: result)
   end
 

@@ -2,7 +2,7 @@ defmodule RepoXml.IdentifyXml do
   @moduledoc false
 
   import SweetXml
-  @error_message "Arquivo não corresponde a um CTe ou NFe!"
+  @error_message %{message: "Arquivo não corresponde a um CTe ou NFe!", status: :unprocessable_entity}
 
   def call(base_64) do
     base_64
@@ -27,7 +27,7 @@ defmodule RepoXml.IdentifyXml do
         result |> xpath(~x"//infNFe/@Id"s) |> identify_nfe(base_64)
 
       _ ->
-        {:error, @error_message}
+        {:error,  @error_message }
     end
   end
 
@@ -50,5 +50,5 @@ defmodule RepoXml.IdentifyXml do
     {:ok, "Caso da NFe!"}
   end
 
-  defp identify_nfe(_result, _base_64), do: {:error, @error_message}
+  defp identify_nfe(_result, _base_64), do: {:error,  @error_message }
 end

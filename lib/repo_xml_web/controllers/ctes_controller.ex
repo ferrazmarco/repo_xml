@@ -8,6 +8,7 @@ defmodule RepoXmlWeb.CtesController do
     |> RepoXml.query_builder()
     |> handle_response(conn, "index.json", :ok)
   end
+
   def show(conn, %{"id" => id}) do
     id
     |> RepoXml.fetch_cte()
