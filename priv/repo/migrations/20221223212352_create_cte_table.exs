@@ -27,8 +27,8 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       add :service_value, :decimal, precision: 10, scale: 2
       add :type_service, :integer
       add :type, :integer
-      add :start_service, :string
-      add :end_service, :string
+      add :ibge_init, :string
+      add :ibge_end, :string
       add :authorized, :boolean
 
       timestamps()

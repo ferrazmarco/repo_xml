@@ -23,9 +23,17 @@ defmodule RepoXml.Cte.Parse do
       service_value: ~x"//vTPrest/text()"s,
       type_service: ~x"//tpServ/text()"i,
       type: ~x"//tpServ/text()"i,
-      weight: ~x"//infQ/qCarga/text()"sl
+      weight: ~x"//infQ/qCarga/text()"sl,
+      quantity: ~x"//infQ/qCarga/text()"sl,
+      ibge_init: ~x"//ide/cMunEnv/text()"s,
+      ibge_end: ~x"//ide/cMunFim/text()"s,
+      borrower_type: ~x"//ide/toma3/toma/text()"s,
+      toma4_cnpj: ~x"//ide/toma4/CNPJ/text()"s,
+      toma4_name: ~x"//ide/toma4/xNome/text()"s
     )
     |> Map.update(:weight, 0, fn array -> set_weight(array) end)
+    |> Map.update(:quantity, 0, fn array -> set_quantity(array) end)
+    |> set_borrower()
     |> Map.merge(params)
   end
 
@@ -36,8 +44,49 @@ defmodule RepoXml.Cte.Parse do
     end
   end
 
-  # quantity and borrowers
-  defp set_borrowers do
+  defp set_quantity(array) do
+    case length(array) do
+      0 -> 0
+      _ -> Enum.at(array, 4, 0)
+    end
+  end
 
+  defp set_borrower(%{borrower_type: type} = map) do
+    case type do
+      "0" ->
+        %{
+          borrower_name: Map.fetch!(map, :sender_name),
+          borrower_cnpj: Map.fetch!(map, :sender_cnpj)
+        }
+        |> Map.merge(map)
+
+      "1" ->
+        %{
+          borrower_name: Map.fetch!(map, :disptacher_name),
+          borrower_cnpj: Map.fetch!(map, :dispatcher_cnpj)
+        }
+        |> Map.merge(map)
+
+      "2" ->
+        %{
+          borrower_name: Map.fetch!(map, :recipient_name),
+          borrower_cnpj: Map.fetch!(map, :recipient_cnpj)
+        }
+        |> Map.merge(map)
+
+      "3" ->
+        %{
+          borrower_name: Map.fetch!(map, :receiver_name),
+          borrower_cnpj: Map.fetch!(map, :receiver_cnpj)
+        }
+        |> Map.merge(map)
+
+      _ ->
+        %{
+          borrower_name: Map.fetch!(map, :toma4_name),
+          borrower_cnpj: Map.fetch!(map, :toma4_cnpj)
+        }
+        |> Map.merge(map)
+    end
   end
 end

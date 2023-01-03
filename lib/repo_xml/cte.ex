@@ -29,7 +29,9 @@ defmodule RepoXml.Cte do
     :service_value,
     :type_service,
     :type,
-    :authorized
+    :authorized,
+    :ibge_init,
+    :ibge_end
   ]
 
   schema "ctes" do
@@ -55,6 +57,8 @@ defmodule RepoXml.Cte do
     field :service_value, :decimal
     field :modal, Ecto.Enum, values: [road: 1, air: 2, sea: 3, rail: 4, ducts: 5, multi: 6]
     field :authorized, :boolean, default: true
+    field :ibge_init, :string
+    field :ibge_end, :string
 
     field :type_service, Ecto.Enum,
       values: [normal: 0, complemento: 1, anulacao: 2, substituto: 3, outros: 4]

@@ -43,7 +43,10 @@ defmodule RepoXml.Cte.QueryBuilder do
   end
 
   defp compose_query({"authorized", authorized}, query) do
-    where(query, [cte], cte.authorized == ^"#{authorized}")
+    case Ecto.Type.cast(:boolean, authorized) do
+      :error -> query
+      {:ok, result} -> where(query, [cte], cte.authorized == ^"#{result}")
+    end
   end
 
   defp compose_query(_, query) do
