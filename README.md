@@ -1,19 +1,50 @@
+
 # RepoXml
 
-To start your Phoenix server:
+Identify, parse and persist in database XML (NFe and CTe).
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Doc
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+#### Create a document
 
-## Learn more
+```http
+  POST /api/import_xml
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+| Param   | Type       | Description                           |
+| :---------- | :--------- | :---------------------------------- |
+| `data` | `string` | **Required**. Base64 of an XML file |
+
+
+#### Return a list of CTes
+
+```http
+  GET /api/ctes
+```
+
+| Param   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `key`      | `string` |   |
+| `number`      | `string` |   |
+| `authorized` | `boolean` | |
+| `issuer_cnpj` | `string` | Only the number, e.g "000000000000" |
+
+
+#### Return one CTe
+
+```http
+  GET /api/ctes/${id}
+```
+
+| Param   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Required**. The ID of the record you want |
+
+
+
+## Stack utilizada
+
+* **Back-end:** Elixir, Phoenix
+* **Database:** PostgreSQL
+
