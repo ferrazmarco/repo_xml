@@ -5,7 +5,7 @@ defmodule RepoXml.Cte.Parse do
   def call(%{xml_b64: xml_b64} = params) do
     xml_b64
     |> Base.decode64!(ignore: :whitespace)
-    |> xpath(~x"//infCte",
+    |> xmap(
       number: ~x"//nCT/text()"s,
       emission_date: ~x"//dhEmi/text()"s,
       modal: ~x"//modal/text()"i,
@@ -23,32 +23,38 @@ defmodule RepoXml.Cte.Parse do
       service_value: ~x"//vTPrest/text()"s,
       type_service: ~x"//tpServ/text()"i,
       type: ~x"//tpServ/text()"i,
-      weight: ~x"//infQ/qCarga/text()"sl,
-      quantity: ~x"//infQ/qCarga/text()"sl,
+      weight:
+        ~x"//infQ/qCarga/text()"sl
+        |> transform_by(fn array ->
+          case length(array) do
+            0 -> 0
+            _ -> hd(array)
+          end
+        end),
+      quantity:
+        ~x"//infQ/qCarga/text()"sl
+        |> transform_by(fn array ->
+          case length(array) do
+            0 -> 0
+            _ -> Enum.at(array, 4, 0)
+          end
+        end),
       ibge_init: ~x"//ide/cMunEnv/text()"s,
       ibge_end: ~x"//ide/cMunFim/text()"s,
       borrower_type: ~x"//ide/toma3/toma/text()"s,
       toma4_cnpj: ~x"//ide/toma4/CNPJ/text()"s,
-      toma4_name: ~x"//ide/toma4/xNome/text()"s
+      toma4_name: ~x"//ide/toma4/xNome/text()"s,
+      icms: ~x"//imp/ICMS/ICMS00/vICMS/text()"s,
+      frete: ~x"//vPrest/vTPrest/text()"s,
+      components: [
+        ~x"//vPrest/Comp"l,
+        name: ~x"./xNome/text()"s,
+        value: ~x"./vComp/text()"s
+      ]
     )
-    |> Map.update(:weight, 0, fn array -> set_weight(array) end)
-    |> Map.update(:quantity, 0, fn array -> set_quantity(array) end)
     |> set_borrower()
+    |> set_components()
     |> Map.merge(params)
-  end
-
-  defp set_weight(array) do
-    case length(array) do
-      0 -> 0
-      _ -> hd(array)
-    end
-  end
-
-  defp set_quantity(array) do
-    case length(array) do
-      0 -> 0
-      _ -> Enum.at(array, 4, 0)
-    end
   end
 
   defp set_borrower(%{borrower_type: type} = map) do
@@ -88,5 +94,12 @@ defmodule RepoXml.Cte.Parse do
         }
         |> Map.merge(map)
     end
+  end
+
+  defp set_components(%{icms: icms, frete: frete} = map) do
+    map
+    |> Map.update(:components, [], fn array ->
+      array ++ [%{name: "VALOR TOTAL", value: frete}, %{name: "ICMS", value: icms}]
+    end)
   end
 end

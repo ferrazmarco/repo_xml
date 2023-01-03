@@ -66,6 +66,11 @@ defmodule RepoXml.Cte do
     field :type, Ecto.Enum,
       values: [normal: 0, subcontratacao: 1, redespacho: 2, redespacho_int: 3, multi: 4]
 
+    embeds_many :components, Component do
+      field :name, :string
+      field :value, :string
+    end
+
     timestamps()
   end
 
@@ -75,8 +80,14 @@ defmodule RepoXml.Cte do
   defp create_changeset(cte, params) do
     cte
     |> cast(params, @fields)
+    |> cast_embed(:components, with: &component_changeset/2)
     |> validate_required([:key, :xml_b64])
     |> validate_length(:key, is: 44)
     |> unique_constraint(:key, name: :ctes_key_index)
+  end
+
+  defp component_changeset(cte, params) do
+    cte
+    |> cast(params, [:value, :name])
   end
 end

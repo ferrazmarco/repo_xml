@@ -21,7 +21,8 @@ defmodule RepoXml.Cte.QueryBuilder do
         :number,
         :weight,
         :authorized,
-        :merchandise_value
+        :merchandise_value,
+        :components
       ],
       order_by: [desc: :emission_date]
   end

@@ -30,6 +30,7 @@ defmodule RepoXml.Repo.Migrations.CreateCteTable do
       add :ibge_init, :string
       add :ibge_end, :string
       add :authorized, :boolean
+      add :components, :map
 
       timestamps()
     end
