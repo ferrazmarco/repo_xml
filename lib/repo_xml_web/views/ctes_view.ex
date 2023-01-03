@@ -2,34 +2,32 @@ defmodule RepoXmlWeb.CtesView do
   use RepoXmlWeb, :view
   alias RepoXml.Cte
 
-  def render("show.json", %{cte: %Cte{} = cte}) do
+  def render("index.json", %{cte: ctes}) do
     %{
-      cte: %{
-        key: cte.key,
-        number: cte.number,
-        weight: cte.weight,
-        merchandise_value: cte.merchandise_value,
-        issuer_cnpj: cte.issuer_cnpj,
-        issuer_name: cte.issuer_name,
-        authorized: cte.authorized
-      }
+      count: length(ctes),
+      data: render_many(ctes, RepoXmlWeb.CtesView, "cte.json")
     }
   end
 
-  def render("index.json", %{cte: ctes}) do
+  def render("show.json", %{cte: cte}) do
+    %{data: render_one(cte, RepoXmlWeb.CtesView, "cte.json")}
+  end
+
+  def render("cte.json", %{ctes: cte}) do
     %{
-      total_count: length(ctes),
-      data:
-        Enum.map(ctes, fn cte ->
+      id: cte.id,
+      key: cte.key,
+      number: cte.number,
+      weight: cte.weight,
+      merchandise_value: cte.merchandise_value,
+      issuer_cnpj: cte.issuer_cnpj,
+      issuer_name: cte.issuer_name,
+      authorized: cte.authorized,
+      components:
+        Enum.map(cte.components, fn component ->
           %{
-            id: cte.id,
-            key: cte.key,
-            number: cte.number,
-            weight: cte.weight,
-            merchandise_value: cte.merchandise_value,
-            issuer_cnpj: cte.issuer_cnpj,
-            issuer_name: cte.issuer_name,
-            authorized: cte.authorized
+            name: component.name,
+            value: component.value
           }
         end)
     }
