@@ -60,39 +60,29 @@ defmodule RepoXml.Cte.Parse do
   defp set_borrower(%{borrower_type: type} = map) do
     case type do
       "0" ->
-        %{
-          borrower_name: Map.fetch!(map, :sender_name),
-          borrower_cnpj: Map.fetch!(map, :sender_cnpj)
-        }
-        |> Map.merge(map)
+        map
+        |> Map.put(:borrower_name, Map.fetch!(map, :sender_name))
+        |> Map.put(:borrower_cnpj, Map.fetch!(map, :sender_cnpj))
 
       "1" ->
-        %{
-          borrower_name: Map.fetch!(map, :disptacher_name),
-          borrower_cnpj: Map.fetch!(map, :dispatcher_cnpj)
-        }
-        |> Map.merge(map)
+        map
+        |> Map.put(:borrower_name, Map.fetch!(map, :disptacher_name))
+        |> Map.put(:borrower_cnpj, Map.fetch!(map, :dispatcher_cnpj))
 
       "2" ->
-        %{
-          borrower_name: Map.fetch!(map, :recipient_name),
-          borrower_cnpj: Map.fetch!(map, :recipient_cnpj)
-        }
-        |> Map.merge(map)
+        map
+        |> Map.put(:borrower_name, Map.fetch!(map, :recipient_name))
+        |> Map.put(:borrower_cnpj, Map.fetch!(map, :recipient_cnpj))
 
       "3" ->
-        %{
-          borrower_name: Map.fetch!(map, :receiver_name),
-          borrower_cnpj: Map.fetch!(map, :receiver_cnpj)
-        }
-        |> Map.merge(map)
+        map
+        |> Map.put(:borrower_name, Map.fetch!(map, :receiver_name))
+        |> Map.put(:borrower_cnpj, Map.fetch!(map, :receiver_cnpj))
 
       _ ->
-        %{
-          borrower_name: Map.fetch!(map, :toma4_name),
-          borrower_cnpj: Map.fetch!(map, :toma4_cnpj)
-        }
-        |> Map.merge(map)
+        map
+        |> Map.put(:borrower_name, Map.fetch!(map, :toma4_name))
+        |> Map.put(:borrower_cnpj, Map.fetch!(map, :toma4_cnpj))
     end
   end
 
