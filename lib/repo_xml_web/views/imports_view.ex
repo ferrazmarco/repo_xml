@@ -5,16 +5,7 @@ defmodule RepoXmlWeb.ImportsView do
 
   def render("200.json", %{result: %Cte{} = cte}) do
     %{
-      message: "CTe importado com sucesso!",
-      cte: %{
-        id: cte.id,
-        key: cte.key,
-        weight: cte.weight,
-        merchandise_value: cte.merchandise_value,
-        issuer_cnpj: cte.issuer_cnpj,
-        issuer_name: cte.issuer_name,
-        authorized: cte.authorized
-      }
+      data: render_one(cte, RepoXmlWeb.CtesView, "cte.json")
     }
   end
 

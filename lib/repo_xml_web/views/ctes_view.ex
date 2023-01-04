@@ -10,7 +10,9 @@ defmodule RepoXmlWeb.CtesView do
   end
 
   def render("show.json", %{cte: cte}) do
-    %{data: render_one(cte, RepoXmlWeb.CtesView, "cte.json")}
+    %{
+      data: render_one(cte, RepoXmlWeb.CtesView, "cte.json")
+    }
   end
 
   def render("cte.json", %{ctes: cte}) do

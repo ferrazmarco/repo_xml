@@ -59,3 +59,7 @@ Identify, parse and persist in database XML (NFe and CTe).
 * **Back-end:** Elixir, Phoenix
 * **Database:** PostgreSQL
 
+## To do
+- [x]   Identify types of XML
+- [x]   Parse CTe and persist in database
+- [ ]   Parse NFe and persist in database
