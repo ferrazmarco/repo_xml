@@ -1,6 +1,5 @@
 defmodule RepoXmlWeb.CtesView do
   use RepoXmlWeb, :view
-  alias RepoXml.Cte
 
   def render("index.json", %{cte: ctes}) do
     %{

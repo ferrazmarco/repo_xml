@@ -35,8 +35,8 @@ defmodule RepoXml.Cte.Parse do
         ~x"//infQ/qCarga/text()"sl
         |> transform_by(fn array ->
           case length(array) do
-            0 -> 0
-            _ -> Enum.at(array, 4, 0)
+            0 -> "0"
+            _ -> Enum.at(array, 4, "0")
           end
         end),
       ibge_init: ~x"//ide/cMunEnv/text()"s,
