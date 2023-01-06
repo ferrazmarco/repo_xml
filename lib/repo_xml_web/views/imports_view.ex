@@ -1,7 +1,7 @@
 defmodule RepoXmlWeb.ImportsView do
   use RepoXmlWeb, :view
 
-  alias RepoXml.Cte
+  alias RepoXml.{Cte, Nfe}
 
   def render("200.json", %{result: %Cte{} = cte}) do
     %{
@@ -9,13 +9,9 @@ defmodule RepoXmlWeb.ImportsView do
     }
   end
 
-  # def render("create.json", %{result: %Nfe{id: id, key: key}}) do
-  #   %{
-  #     message: "NFe importada com sucesso!",
-  #     nfe: %{
-  #       id: id,
-  #       key: key
-  #     }
-  #   }
-  # end
+  def render("200.json", %{result: %Nfe{} = nfe}) do
+    %{
+      data: render_one(nfe, RepoXmlWeb.NfesView, "nfe.json")
+    }
+  end
 end

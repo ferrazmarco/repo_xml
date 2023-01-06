@@ -46,8 +46,10 @@ defmodule RepoXml.IdentifyXml do
     |> decode(:nfe)
   end
 
-  defp identify_nfe(result, _base_64) when result !== "" do
-    {:ok, "Caso da NFe!"}
+  defp identify_nfe(result, base_64) when result !== "" do
+    key = result |> String.replace(~r/[^\d]/, "")
+
+    RepoXml.create_nfe(%{key: key, xml_b64: base_64})
   end
 
   defp identify_nfe(_result, _base_64), do: {:error,  @error_message }
