@@ -13,4 +13,4 @@ RUN mix local.hex --force && \
 RUN mix do deps.get, deps.compile
 
 EXPOSE 4000
-CMD ["/app/entrypoint.sh"]
+CMD mix phx.server
