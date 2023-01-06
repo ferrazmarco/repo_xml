@@ -18,6 +18,8 @@ defmodule RepoXml.Repo.Migrations.CreateNfeTable do
       add :specie, :string
       add :quantity, :string
       add :weight, :decimal, precision: 10, scale: 2
+      add :value, :string
+      add :series, :string
 
       timestamps()
     end

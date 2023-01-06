@@ -1,10 +1,39 @@
-
 # RepoXml
 
 Identify, parse and persist in database XML (NFe and CTe).
 
+## Run Locally
 
-## Doc
+Clone the project
+
+```bash
+  git clone https://github.com/marco-a-ferraz/repo_xml.git
+```
+
+Go to the project directory
+
+```bash
+  cd repo_xml
+```
+
+Run docker
+
+```bash
+  docker-compose build
+```
+
+Setup database
+
+```bash
+  docker-compose exec app mix ecto.setup
+```
+
+Start the server
+```bash
+  docker-compose up
+```
+
+## API Reference
 
 #### Create a document
 
@@ -17,7 +46,7 @@ Identify, parse and persist in database XML (NFe and CTe).
 | `data` | `string` | **Required**. Base64 of an XML file |
 
 
-#### Return a list of CTes
+#### Get all CTe
 
 ```http
   GET /api/ctes
@@ -31,7 +60,7 @@ Identify, parse and persist in database XML (NFe and CTe).
 | `issuer_cnpj` | `string` | Only the number, e.g "000000000000"|
 
 
-#### Return one CTe
+#### Get CTe
 
 ```http
   GET /api/ctes/${id}
@@ -41,7 +70,7 @@ Identify, parse and persist in database XML (NFe and CTe).
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Required**. The ID of the record you want |
 
-#### Update one CTe
+#### Update CTe
 
 ```http
   PATCH /api/ctes/${id}
@@ -54,14 +83,14 @@ Identify, parse and persist in database XML (NFe and CTe).
 
 
 
-## Stack utilizada
+## Tech Stack
 
 * **Back-end:** Elixir, Phoenix
 * **Database:** PostgreSQL
 
+
 ## To do
 - [x]   Identify types of XML
 - [x]   Parse CTe and persist in database
-- [ ]   Parse NFe and persist in database
+- [x]   Parse NFe and persist in database
 - [ ]   API Authentication
-- [ ]   Write tests

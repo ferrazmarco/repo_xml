@@ -5,6 +5,8 @@ services:
          context: .
       ports:
          - '4000:4000'
+      volumes:
+         - .:/repo_xml
       depends_on:
          - db
       links:

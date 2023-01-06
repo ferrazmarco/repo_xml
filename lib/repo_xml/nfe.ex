@@ -19,7 +19,9 @@ defmodule RepoXml.Nfe do
     :ncm,
     :specie,
     :quantity,
-    :weight
+    :weight,
+    :value,
+    :series
   ]
 
   schema "nfes" do
@@ -37,6 +39,8 @@ defmodule RepoXml.Nfe do
     field :specie, :string
     field :quantity, :string
     field :weight, :decimal
+    field :value, :string
+    field :series, :string
 
     timestamps()
   end

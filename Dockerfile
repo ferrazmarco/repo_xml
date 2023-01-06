@@ -1,7 +1,7 @@
 FROM elixir:1.13.3-alpine
 
-RUN apk update && apk add bash
-RUN apk --update add postgresql-client
+# RUN apk update && apk add bash
+# RUN apk --update add postgresql-client
 
 RUN mkdir /app
 COPY . /app
