@@ -14,6 +14,12 @@ defmodule RepoXmlWeb.CtesView do
     }
   end
 
+  def render("delete.json", %{cte: _cte}) do
+    %{
+      message: "CTe deleted with success!"
+    }
+  end
+
   def render("cte.json", %{ctes: cte}) do
     %{
       id: cte.id,

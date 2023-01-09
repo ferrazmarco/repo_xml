@@ -1,20 +1,13 @@
 defmodule RepoXml.Cte.Update do
   @moduledoc false
+  alias RepoXml.Cte.Fetch
   alias RepoXml.Schemas.Cte
   alias RepoXml.Repo
-  alias Ecto.UUID
 
   def call(%{"id" => uuid} = params) do
-    case UUID.cast(uuid) do
-      :error -> {:error, %{message: "Invalid ID format", status: :bad_request}}
-      {:ok, _uuid} -> update(params)
-    end
-  end
-
-  defp update(%{"id" => uuid} = params) do
-    case Repo.get(Cte, uuid) do
-      nil -> {:error, %{message: "CTe not found!", status: :not_found}}
-      cte -> update_cte(cte, params)
+    case Fetch.call(uuid) do
+      {:ok, %Cte{} = cte} -> update_cte(cte, params)
+      {:error, _message} = error -> error
     end
   end
 

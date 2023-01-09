@@ -10,7 +10,8 @@ defmodule RepoXmlWeb.Router do
 
     post "/import_xml", ImportsController, :import_xml
 
-    resources "/ctes", CtesController, only: [:show, :index, :update]
+    resources "/ctes", CtesController, only: [:show, :index, :delete]
+    resources "/nfes", NfesController, only: [:show, :index, :delete]
   end
 
   # Enables LiveDashboard only for development

@@ -1,9 +1,22 @@
 defmodule RepoXmlWeb.NfesView do
   use RepoXmlWeb, :view
 
+  def render("index.json", %{nfe: nfes}) do
+    %{
+      count: length(nfes),
+      data: render_many(nfes, RepoXmlWeb.NfesView, "nfe.json")
+    }
+  end
+
   def render("show.json", %{nfe: nfe}) do
     %{
       data: render_one(nfe, RepoXmlWeb.NfesView, "nfe.json")
+    }
+  end
+
+  def render("delete.json", %{nfe: _nfe}) do
+    %{
+      message: "NFe deleted with success!"
     }
   end
 

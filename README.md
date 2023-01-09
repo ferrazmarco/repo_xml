@@ -70,16 +70,49 @@ Start the server
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Required**. The ID of the record you want |
 
-#### Update CTe
+#### Delete CTe
 
 ```http
-  PATCH /api/ctes/${id}
+  DELETE /api/ctes/${id}
 ```
 
 | Param   | Type       | Description                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `id`      | `string` | **Required**. The ID of the record you want |
-| `authorized` | `boolean` | **Optional** |
+
+#### Get all NFe
+
+```http
+  GET /api/nfes
+```
+
+| Param   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `key`      | `string` |   |
+| `number`      | `string` |   |
+| `authorized` | `boolean` | |
+| `issuer_cnpj` | `string` | Only the number, e.g "000000000000"|
+
+
+#### Get NFe
+
+```http
+  GET /api/nfes/${id}
+```
+
+| Param   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Required**. The ID of the record you want |
+
+#### Delete NFe
+
+```http
+  DELETE /api/nfes/${id}
+```
+
+| Param   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Required**. The ID of the record you want |
 
 
 

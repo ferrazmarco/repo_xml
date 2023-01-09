@@ -1,4 +1,4 @@
-defmodule RepoXml.Cte.Show do
+defmodule RepoXml.Cte.Fetch do
   @moduledoc false
   alias RepoXml.Schemas.Cte
   alias RepoXml.Repo

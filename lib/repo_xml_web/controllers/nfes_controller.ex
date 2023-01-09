@@ -1,11 +1,10 @@
-defmodule RepoXmlWeb.CtesController do
+defmodule RepoXmlWeb.NfesController do
   use RepoXmlWeb, :controller
   action_fallback RepoXmlWeb.FallbackController
 
-  alias RepoXml.Cte.QueryBuilder
-  alias RepoXml.Cte.Fetch, as: FetchCte
-  alias RepoXml.Cte.Update, as: UpdateCte
-  alias RepoXml.Cte.Delete, as: DeleteCte
+  alias RepoXml.Nfe.QueryBuilder
+  alias RepoXml.Nfe.Fetch, as: FetchNfe
+  alias RepoXml.Nfe.Delete, as: DeleteNfe
 
   def index(conn, params) do
     params
@@ -15,26 +14,20 @@ defmodule RepoXmlWeb.CtesController do
 
   def show(conn, %{"id" => id}) do
     id
-    |> FetchCte.call()
-    |> handle_response(conn, "show.json", :ok)
-  end
-
-  def update(conn, params) do
-    params
-    |> UpdateCte.call()
+    |> FetchNfe.call()
     |> handle_response(conn, "show.json", :ok)
   end
 
   def delete(conn, params) do
     params
-    |> DeleteCte.call()
+    |> DeleteNfe.call()
     |> handle_response(conn, "delete.json", :ok)
   end
 
-  defp handle_response({:ok, cte}, conn, view, status) do
+  defp handle_response({:ok, nfe}, conn, view, status) do
     conn
     |> put_status(status)
-    |> render(view, cte: cte)
+    |> render(view, nfe: nfe)
   end
 
   defp handle_response({:error, _} = error, _conn, _view, _status), do: error
