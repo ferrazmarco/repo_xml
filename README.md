@@ -90,7 +90,6 @@ Start the server
 | :---------- | :--------- | :------------------------------------------ |
 | `key`      | `string` |   |
 | `number`      | `string` |   |
-| `authorized` | `boolean` | |
 | `issuer_cnpj` | `string` | Only the number, e.g "000000000000"|
 
 
