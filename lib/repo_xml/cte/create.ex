@@ -1,6 +1,7 @@
 defmodule RepoXml.Cte.Create do
   @moduledoc false
-  alias RepoXml.{Cte, Repo}
+  alias RepoXml.Schemas.Cte
+  alias RepoXml.Repo
   alias RepoXml.Cte.Parse
 
   def call(params) do

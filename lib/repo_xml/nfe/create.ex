@@ -1,6 +1,7 @@
 defmodule RepoXml.Nfe.Create do
   @moduledoc false
-  alias RepoXml.{Nfe, Repo}
+  alias RepoXml.Repo
+  alias RepoXml.Schemas.Nfe
   alias RepoXml.Nfe.Parse
 
   def call(params) do

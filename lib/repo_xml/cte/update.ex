@@ -1,6 +1,7 @@
 defmodule RepoXml.Cte.Update do
   @moduledoc false
-  alias RepoXml.{Cte, Repo}
+  alias RepoXml.Schemas.Cte
+  alias RepoXml.Repo
   alias Ecto.UUID
 
   def call(%{"id" => uuid} = params) do

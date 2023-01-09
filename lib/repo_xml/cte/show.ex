@@ -1,6 +1,7 @@
 defmodule RepoXml.Cte.Show do
   @moduledoc false
-  alias RepoXml.{Cte, Repo}
+  alias RepoXml.Schemas.Cte
+  alias RepoXml.Repo
   alias Ecto.UUID
 
   def call(uuid) do

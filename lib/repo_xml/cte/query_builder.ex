@@ -1,7 +1,8 @@
 defmodule RepoXml.Cte.QueryBuilder do
   @moduledoc false
 
-  alias RepoXml.{Cte, Repo}
+  alias RepoXml.Schemas.Cte
+  alias RepoXml.Repo
   import Ecto.Query
 
   def call(criteria) do

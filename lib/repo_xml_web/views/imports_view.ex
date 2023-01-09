@@ -1,7 +1,7 @@
 defmodule RepoXmlWeb.ImportsView do
   use RepoXmlWeb, :view
 
-  alias RepoXml.{Cte, Nfe}
+  alias RepoXml.Schemas.{Cte, Nfe}
 
   def render("200.json", %{result: %Cte{} = cte}) do
     %{

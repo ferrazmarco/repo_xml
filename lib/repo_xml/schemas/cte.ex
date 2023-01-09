@@ -1,4 +1,4 @@
-defmodule RepoXml.Cte do
+defmodule RepoXml.Schemas.Cte do
   @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
