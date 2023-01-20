@@ -127,4 +127,4 @@ Start the server
 - [x]   Parse NFe and persist in database
 - [ ]   API Authentication
 - [ ]   API Versioning
-- [ ]   Persist files in bucket S3
+- [ ]   Upload files to S3 Bucket
