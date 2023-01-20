@@ -1,4 +1,4 @@
-defmodule RepoXmlWeb.ImportsController do
+defmodule RepoXmlWeb.Api.V1.ImportsController do
   use RepoXmlWeb, :controller
   action_fallback RepoXmlWeb.FallbackController
 

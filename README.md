@@ -38,7 +38,7 @@ Start the server
 #### Create a document
 
 ```http
-  POST /api/import_xml
+  POST /api/v1/import_xml
 ```
 
 | Param   | Type       | Description                           |
@@ -49,7 +49,7 @@ Start the server
 #### Get all CTe
 
 ```http
-  GET /api/ctes
+  GET /api/v1/ctes
 ```
 
 | Param   | Type       | Description                                   |
@@ -63,7 +63,7 @@ Start the server
 #### Get CTe
 
 ```http
-  GET /api/ctes/${id}
+  GET /api/v1/ctes/${id}
 ```
 
 | Param   | Type       | Description                                   |
@@ -73,7 +73,7 @@ Start the server
 #### Delete CTe
 
 ```http
-  DELETE /api/ctes/${id}
+  DELETE /api/v1/ctes/${id}
 ```
 
 | Param   | Type       | Description                                   |
@@ -83,7 +83,7 @@ Start the server
 #### Get all NFe
 
 ```http
-  GET /api/nfes
+  GET /api/v1/nfes
 ```
 
 | Param   | Type       | Description                                   |
@@ -96,7 +96,7 @@ Start the server
 #### Get NFe
 
 ```http
-  GET /api/nfes/${id}
+  GET /api/v1/nfes/${id}
 ```
 
 | Param   | Type       | Description                                   |
@@ -106,7 +106,7 @@ Start the server
 #### Delete NFe
 
 ```http
-  DELETE /api/nfes/${id}
+  DELETE /api/v1/nfes/${id}
 ```
 
 | Param   | Type       | Description                                   |
@@ -126,5 +126,4 @@ Start the server
 - [x]   Parse CTe and persist in database
 - [x]   Parse NFe and persist in database
 - [ ]   API Authentication
-- [ ]   API Versioning
 - [ ]   Upload files to S3 Bucket
