@@ -126,3 +126,5 @@ Start the server
 - [x]   Parse CTe and persist in database
 - [x]   Parse NFe and persist in database
 - [ ]   API Authentication
+- [ ]   API Versioning
+- [ ]   Persist files in bucket S3

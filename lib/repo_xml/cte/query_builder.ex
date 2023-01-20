@@ -37,6 +37,7 @@ defmodule RepoXml.Cte.QueryBuilder do
   end
 
   defp compose_query({"number", number}, query) do
+    # where(query, [cte], like(cte.number, ^"%#{number}%"))
     where(query, [cte], cte.number == ^"#{number}")
   end
 
