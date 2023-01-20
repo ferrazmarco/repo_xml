@@ -1,16 +1,16 @@
-defmodule RepoXmlWeb.CtesView do
+defmodule RepoXmlWeb.Api.V1.CtesView do
   use RepoXmlWeb, :view
 
   def render("index.json", %{cte: ctes}) do
     %{
       count: length(ctes),
-      data: render_many(ctes, RepoXmlWeb.CtesView, "cte.json")
+      data: render_many(ctes, RepoXmlWeb.Api.V1.CtesView, "cte.json")
     }
   end
 
   def render("show.json", %{cte: cte}) do
     %{
-      data: render_one(cte, RepoXmlWeb.CtesView, "cte.json")
+      data: render_one(cte, RepoXmlWeb.Api.V1.CtesView, "cte.json")
     }
   end
 

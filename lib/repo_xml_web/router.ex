@@ -5,13 +5,15 @@ defmodule RepoXmlWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", RepoXmlWeb do
+  scope "/api", RepoXmlWeb, as: :api do
     pipe_through :api
 
-    post "/import_xml", ImportsController, :import_xml
+    scope "/v1", Api.V1, as: :v1 do
+      post "/import_xml", ImportsController, :import_xml
 
-    resources "/ctes", CtesController, only: [:show, :index, :delete]
-    resources "/nfes", NfesController, only: [:show, :index, :delete]
+      resources "/ctes", CtesController, only: [:show, :index, :delete]
+      resources "/nfes", NfesController, only: [:show, :index, :delete]
+    end
   end
 
   # Enables LiveDashboard only for development

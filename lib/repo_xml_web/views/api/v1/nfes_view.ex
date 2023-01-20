@@ -1,16 +1,16 @@
-defmodule RepoXmlWeb.NfesView do
+defmodule RepoXmlWeb.Api.V1.NfesView do
   use RepoXmlWeb, :view
 
   def render("index.json", %{nfe: nfes}) do
     %{
       count: length(nfes),
-      data: render_many(nfes, RepoXmlWeb.NfesView, "nfe.json")
+      data: render_many(nfes, RepoXmlWeb.Api.V1.NfesView, "nfe.json")
     }
   end
 
   def render("show.json", %{nfe: nfe}) do
     %{
-      data: render_one(nfe, RepoXmlWeb.NfesView, "nfe.json")
+      data: render_one(nfe, RepoXmlWeb.Api.V1.NfesView, "nfe.json")
     }
   end
 
